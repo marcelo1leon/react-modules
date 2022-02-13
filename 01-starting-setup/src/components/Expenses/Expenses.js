@@ -1,7 +1,8 @@
 import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
+import Card from "../UI/Card";
 
-function Expenses(props) {
+const Expenses = (props) => {
   let expensesList = []; //Defino la lista de items
 
   //Agrego los items recibidos por param a la lista definida previamenrte
@@ -17,9 +18,9 @@ function Expenses(props) {
   });
 
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {expensesList}
-    </div>
+    </Card>
   );
 
   
