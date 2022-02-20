@@ -1,15 +1,23 @@
+import React, {useState} from "react";
+
 import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card";
 
 const Expenses = (props) => {
+  const [filteredYear, setFilteredYear] = useState('2020');
+
+  const filterChangeHandler = selectedYear => { 
+    setFilteredYear(selectedYear);
+  };
   let expensesList = []; //Defino la lista de items
 
-  //Agrego los items recibidos por param a la lista definida previamenrte
+  //Agrego los items recibidos por param a la lista definida previamenrte  
   props.expenses.forEach((item) => {
     expensesList.push(
       <ExpenseItem
-        id={item.id}
+        key={item.id}
         title={item.title}
         amount={item.amount}
         date={item.date}
@@ -18,9 +26,14 @@ const Expenses = (props) => {
   });
 
   return (
-    <Card className="expenses">
+    <div>
+
+      <Card className="expenses">
+      <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
       {expensesList}
-    </Card>
+      </Card>
+    </div>
+      
   );
 
   
